@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb:10.8.3
+    container_name: congmariadb-2022
+    environment:
+      MYSQL_DATABASE: "HUST_Big_Homework"
+      MYSQL_USER: "congmetmoi"
+      MYSQL_PASSWORD: "54321"
+      MYSQL_ROOT_PASSWORD: "54321"
+      #      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ./netbi.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "13307:3306"
+volumes:
+  mariadb-data:
